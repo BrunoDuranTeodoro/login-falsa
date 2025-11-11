@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Liquidificador Turbo 900W | MercadoLivre Style</title>
+<style>
+  :root {
+    --ml-yellow: #fff159;
+    --ml-blue: #3483fa;
+    --text-dark: #333;
+    --text-muted: #777;
+    --bg-gray: #f5f5f5;
+    --white: #fff;
+    --radius: 10px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", Arial, sans-serif;
+    background: var(--bg-gray);
+    color: var(--text-dark);
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ml-yellow);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+
+  header .logo {
+    font-weight: 800;
+    font-size: 20px;
+    color: #333;
+  }
+
+  header input {
+    width: 45%;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+  }
+
+  /* MENU */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #555;
+    transition: .2s;
+  }
+
+  nav a:hover {
+    color: var(--ml-blue);
+  }
+
+  /* PRODUTO PRINCIPAL */
+  main {
+    max-width: 1100px;
+    margin: 30px auto;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .main-img {
+    width: 100%;
+    height: 420px;
+    background: #f1f1f1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumbs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: .2s;
+  }
+
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb.active {
+    border-color: var(--ml-blue);
+  }
+
+  .details h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  .price {
+    margin-top: 8px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ml-blue);
+  }
+
+  .old-price {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .desc {
+    margin-top: 14px;
+    color: #444;
+    line-height: 1.4;
+  }
+
+  .btn {
+    background: var(--ml-blue);
+    color: #fff;
+    padding: 14px 16px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 18px;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background: #2968c8;
+  }
+
+  @media(max-width:900px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* PRODUTOS RELACIONADOS */
+  .related {
+    max-width: 1100px;
+    margin: 30px auto;
+  }
+
+  .related h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #222;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: .2s;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .card .info {
+    padding: 10px 12px;
+  }
+
+  .card .info h3 {
+    font-size: 15px;
+    margin: 0;
+    height: 38px;
+    overflow: hidden;
+  }
+
+  .card .info .price {
+    color: var(--ml-blue);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #333;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: all 0.25s;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">MercadoLivre</div>
+    <input type="text" placeholder="Buscar produtos, marcas e muito mais...">
+    <header class="topbar">
+  <nav class="menu">
+    <a href="index.html">Início</a>
+    <a href="explicacao.html">Explicação</a>
+    <a href="produto.html">Produto</a>
+  </nav>
+</header>
+  </header>
+
+  <nav>
+    <a href="#">Ofertas</a>
+    <a href="#">Mercado Pago</a>
+    <a href="#">Supermercado</a>
+    <a href="#">Moda</a>
+    <a href="#">Eletrônicos</a>
+    <a href="#">Casa e Cozinha</a>
+  </nav>
+
+  <main>
+    <!-- Imagens -->
+    <section class="gallery">
+      <div class="main-img" id="mainImg">
+        <img src="https://picsum.photos/id/1060/800/600" alt="Produto principal">
+      </div>
+      <div class="thumbs" id="thumbs">
+        <div class="thumb active" data-src="https://picsum.photos/id/1060/800/600">
+          <img src="https://picsum.photos/id/1060/150/150">
+        </div>
+        <div class="thumb" data-src="https://picsum.photos/id/1074/800/600">
+          <img src="https://picsum.photos/id/1074/150/150">
+        </div>
+        <div class="thumb" data-src="https://picsum.photos/id/1080/800/600">
+          <img src="https://picsum.photos/id/1080/150/150">
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalhes -->
+    <section class="details">
+      <h1>Liquidificador Turbo 900W Inox — 5 Velocidades + Pulsar</h1>
+      <div class="price">R$ 49,90</div>
+      <div class="old-price">R$ 249,90</div>
+
+ <p class="desc">
+  Prepare suas receitas favoritas com praticidade e potência! 💪<br>
+  O <strong>Liquidificador TurboMix 900W</strong> conta com lâminas de aço inoxidável ultra afiadas, copo resistente de <strong>2 litros</strong> e design moderno que combina com qualquer cozinha.  
+  Silencioso, eficiente e pronto pra encarar desde sucos e vitaminas até massas leves. 🥤✨
+</p>
+
+
+      <button class="btn" id="addCart">Comprar agora</button>
+    </section>
+  </main>
+
+  <!-- PRODUTOS RELACIONADOS -->
+  <section class="related">
+    <h2>Produtos relacionados</h2>
+    <div class="product-grid">
+      <div class="card">
+        <img src="https://picsum.photos/id/1084/400/300" alt="">
+        <div class="info">
+          <h3>Batedeira Planetária Turbo 700W</h3>
+          <div class="price">R$ 219,90</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/id/109/400/300" alt="">
+        <div class="info">
+          <h3>Fritadeira Sem Óleo 3,2L — Smart Fryer</h3>
+          <div class="price">R$ 349,90</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/id/160/400/300" alt="">
+        <div class="info">
+          <h3>Cafeteira Elétrica Digital</h3>
+          <div class="price">R$ 289,00</div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/id/222/400/300" alt="">
+        <div class="info">
+          <h3>Espremedor de Frutas Premium 800W</h3>
+          <div class="price">R$ 179,90</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast">Produto adicionado ao carrinho!</div>
+
+<script>
+  // Troca imagem principal
+  const mainImg = document.getElementById('mainImg').querySelector('img');
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      mainImg.src = t.dataset.src;
+    });
+  });
+
+  // Toast de compra
+  const toast = document.getElementById('toast');
+  document.getElementById('addCart').addEventListener('click', () => {
+    toast.classList.add('show');
+    setTimeout(()=> toast.classList.remove('show'), 2000);
+  });
+</script>
+</body>
+</html>

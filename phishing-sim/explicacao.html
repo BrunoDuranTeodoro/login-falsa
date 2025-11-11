@@ -63,7 +63,13 @@
 </head>
 <body>
 
-<header>📋 Portal Exemplo — Relatório da Simulação</header>
+<header class="topbar">
+  <nav class="menu">
+    <a href="index.html">Início</a>
+    <a href="explicacao.html">Explicação</a>
+    <a href="produto.html">Produto</a>
+  </nav>
+</header>
 
 <div class="container">
   <h1>✅ Dados Recebidos</h1>
@@ -88,7 +94,9 @@
   container.innerHTML = `
     <h2>🧾 Informações Inseridas</h2>
     <div class="data-item"><span>Email:</span> ${form.nome || '—'}</div>
-    <div class="data-item"><span>Senha:</span> ${form.sobrenome || '—'}</div>
+    <div class="data-item"><span>Senha: </span> ${form.sobrenome || '—'}</div>
+    <div class="data-item"><span>CPF: </span> ${form.cpf || '—'}</div>
+    <div class="data-item"><span>Telefone: </span> ${form.tel || '—'}</div>
     <div class="data-item"><span>Data e hora:</span> ${new Date(report.timestamp).toLocaleString('pt-BR')}</div>
     <div class="data-item"><span>Origem:</span> ${report.url || '—'}</div>
     <div class="data-item"><span>Observação:</span> ${form.note || '—'}</div>

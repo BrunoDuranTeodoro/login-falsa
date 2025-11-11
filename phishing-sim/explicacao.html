@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise de Phishing — Explicação</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🔍 Análise de Segurança da Página</h2>
+    <ul id="analise"></ul>
+    <button onclick="window.location.href='index.html'">Voltar</button>
+  </div>
+
+  <script>
+    const protocolo = localStorage.getItem("protocolo");
+    const dominio = localStorage.getItem("dominio");
+    const temHTTPS = localStorage.getItem("temHTTPS") === "true";
+    const suspeito = localStorage.getItem("suspeito") === "true";
+
+    const lista = document.getElementById("analise");
+
+    const itens = [
+      {
+        titulo: "Protocolo",
+        mensagem: temHTTPS
+          ? "✅ Conexão HTTPS detectada. Dados criptografados."
+          : "⚠️ Página usa HTTP — conexões inseguras permitem interceptação de dados."
+      },
+      {
+        titulo: "Domínio",
+        mensagem: suspeito
+          ? `🚨 Domínio suspeito detectado: "${dominio}". Pode ser uma imitação.`
+          : `🔹 Domínio analisado: ${dominio} — aparentemente legítimo.`
+      },
+      {
+        titulo: "Certificado Digital",
+        mensagem: "💡 Verifique sempre o cadeado no navegador e se o nome do certificado coincide com o site."
+      },
+      {
+        titulo: "Dica Final",
+        mensagem: "Nunca digite senhas em páginas desconhecidas. Em caso de dúvida, acesse manualmente o endereço do site."
+      }
+    ];
+
+    itens.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${item.titulo}:</strong> ${item.mensagem}`;
+      lista.appendChild(li);
+    });
+  </script>
+</body>
+</html>

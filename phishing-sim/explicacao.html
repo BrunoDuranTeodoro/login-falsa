@@ -1,54 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Análise de Phishing — Explicação</title>
-  <link rel="stylesheet" href="styles/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relatório da Simulação</title>
+<style>
+  body {
+    font-family: "Inter", Arial, sans-serif;
+    margin: 0;
+    background: #f5f6fa;
+    color: #1e293b;
+  }
+  header {
+    background: #fde74a;
+    padding: 18px 32px;
+    font-weight: 700;
+    color: #1f2937;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  }
+  .container {
+    max-width: 900px;
+    margin: 32px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 24px 32px;
+  }
+  h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 18px;
+    margin-top: 28px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 4px;
+  }
+  .data-item {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .data-item span {
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .warning {
+    background: #fff7ed;
+    border-left: 6px solid #f59e0b;
+    padding: 12px;
+    border-radius: 6px;
+    color: #92400e;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 13px;
+    color: #6b7280;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h2>🔍 Análise de Segurança da Página</h2>
-    <ul id="analise"></ul>
-    <button onclick="window.location.href='index.html'">Voltar</button>
+
+<header>📋 Portal Exemplo — Relatório da Simulação</header>
+
+<div class="container">
+  <h1>✅ Dados Recebidos</h1>
+  <p>Estes são os dados que você inseriu na página anterior. Observe como um sistema malicioso poderia exibi-los, caso fosse real.</p>
+
+  <div id="dados-form"></div>
+
+  <div class="warning">
+    ⚠️ Esta simulação não envia nenhuma informação pela internet. Todos os dados são locais.
   </div>
 
-  <script>
-    const protocolo = localStorage.getItem("protocolo");
-    const dominio = localStorage.getItem("dominio");
-    const temHTTPS = localStorage.getItem("temHTTPS") === "true";
-    const suspeito = localStorage.getItem("suspeito") === "true";
+  <div class="footer">
+    Projeto de Cibersegurança — Curso de ADS
+  </div>
+</div>
 
-    const lista = document.getElementById("analise");
+<script>
+  const report = JSON.parse(localStorage.getItem('phish_report')) || {};
+  const form = report.form_data || {};
+  const container = document.getElementById('dados-form');
 
-    const itens = [
-      {
-        titulo: "Protocolo",
-        mensagem: temHTTPS
-          ? "✅ Conexão HTTPS detectada. Dados criptografados."
-          : "⚠️ Página usa HTTP — conexões inseguras permitem interceptação de dados."
-      },
-      {
-        titulo: "Domínio",
-        mensagem: suspeito
-          ? `🚨 Domínio suspeito detectado: "${dominio}". Pode ser uma imitação.`
-          : `🔹 Domínio analisado: ${dominio} — aparentemente legítimo.`
-      },
-      {
-        titulo: "Certificado Digital",
-        mensagem: "💡 Verifique sempre o cadeado no navegador e se o nome do certificado coincide com o site."
-      },
-      {
-        titulo: "Dica Final",
-        mensagem: "Nunca digite senhas em páginas desconhecidas. Em caso de dúvida, acesse manualmente o endereço do site."
-      }
-    ];
+  container.innerHTML = `
+    <h2>🧾 Informações Inseridas</h2>
+    <div class="data-item"><span>Email:</span> ${form.nome || '—'}</div>
+    <div class="data-item"><span>Senha:</span> ${form.sobrenome || '—'}</div>
+    <div class="data-item"><span>Data e hora:</span> ${new Date(report.timestamp).toLocaleString('pt-BR')}</div>
+    <div class="data-item"><span>Origem:</span> ${report.url || '—'}</div>
+    <div class="data-item"><span>Observação:</span> ${form.note || '—'}</div>
+  `;
+</script>
 
-    itens.forEach(item => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${item.titulo}:</strong> ${item.mensagem}`;
-      lista.appendChild(li);
-    });
-  </script>
 </body>
 </html>

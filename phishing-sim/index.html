@@ -1,28 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Acesso — Simulação Educativa</title>
-  <link rel="stylesheet" href="styles/style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portal Simulação — Login Educativo</title>
+<style>
+  *{box-sizing:border-box}
+  body,html{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:#efefef;color:#0f172a}
+  .topbar{background:#fde74a;height:96px;display:flex;align-items:center;padding:0 28px;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:600;color:#1f2937}
+  .logo{width:42px;height:42px;border-radius:50%;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#111;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .page{min-height:calc(100% - 96px);display:flex;align-items:flex-start;justify-content:center;padding:36px 16px 80px}
+  .card{width:460px;background:#fff;border-radius:8px;margin-top:36px;box-shadow:0 10px 30px rgba(15,20,30,0.08);overflow:hidden}
+  .card-inner{padding:28px}
+  h1{font-size:20px;margin:0 0 8px;color:#0f172a}
+  .lead{color:#374151;margin:0 0 18px;font-size:14px;line-height:1.35}
+  label{display:block;font-size:13px;color:#374151;margin:12px 0 6px}
+  input[type="text"], input[type="password"]{width:100%;padding:12px 14px;border-radius:8px;border:1px solid #cbd5e1;font-size:14px;outline:none}
+  input:focus{border-color:#3b82f6;box-shadow:0 6px 18px rgba(59,130,246,0.08)}
+  .btn{display:block;width:100%;margin-top:18px;padding:12px 14px;background:#2563eb;color:#fff;border:0;border-radius:8px;font-weight:600;cursor:pointer}
+  .note{font-size:12px;color:#6b7280;margin-top:12px}
+  .warning{background:#fff7ed;color:#92400e;padding:10px;border-radius:8px;border:1px solid #ffedd5;font-weight:600;margin-bottom:12px}
+  @media(max-width:520px){.card{width:94%}.topbar{height:72px;padding:0 12px}}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="login-box">
-      <img src="assets/logo-fake.png" alt="Logo" class="logo">
-      <h2>Portal de Acesso</h2>
-      <form id="fake-login">
-        <label>Email</label>
-        <input type="email" id="email" placeholder="usuario@empresa.com" required>
-
-        <label>Senha</label>
-        <input type="password" id="password" placeholder="••••••••" required>
-
-        <button type="submit">Entrar</button>
-      </form>
-      <p class="warning">⚠️ Atenção: esta é uma simulação educativa de segurança.</p>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">P</div>
+      <div>
+        <div style="font-size:15px">Portal Exemplo</div>
+        <div style="font-size:12px;color:rgba(15,23,42,0.7);margin-top:2px">Simulação educativa</div>
+      </div>
     </div>
-  </div>
-  <script src="scripts/detector.js"></script>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-inner">
+        <h1>Bem-vindo ao Mercado Solto</h1>
+        <p class="lead">Este ambiente é apenas para aprendizado de cibersegurança — os dados são salvos apenas no seu navegador.</p>
+
+        <form id="fake-login" autocomplete="off" novalidate>
+          <label for="nome">Email</label>
+          <input id="nome" name="nome" type="text" placeholder="Ex.: example@gmail.com">
+
+          <label for="sobrenome">Senha</label>
+          <input id="sobrenome" name="sobrenome" type="text" placeholder="Digite sua senha.">
+
+          <button class="btn" type="submit">Continuar</button>
+          <div class="note">Os dados inseridos serão exibidos apenas na próxima página, de forma local.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+<script>
+document.getElementById('fake-login').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const nome = document.getElementById('nome').value.trim();
+  const sobrenome = document.getElementById('sobrenome').value.trim();
+
+  const report = {
+    timestamp: new Date().toISOString(),
+    url: window.location.href,
+    form_data: {
+      nome,
+      sobrenome,
+      note: 'Esses dados são apenas parte da simulação e foram armazenados localmente.'
+    }
+  };
+
+  localStorage.setItem('phish_report', JSON.stringify(report));
+  window.location.href = 'explicacao.html';
+});
+</script>
 </body>
 </html>

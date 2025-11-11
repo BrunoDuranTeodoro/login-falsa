@@ -1,141 +1,59 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Simulação Educativa — Login Falso</title>
-<style>
-  :root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#111}
-  body{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(120deg,#f6f9ff,#eef7f2)}
-  .card{width:360px;padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(20,30,60,.08);background:#fff}
-  h1{font-size:18px;margin:0 0 6px}
-  p.lead{margin:0 0 18px;font-size:13px;color:#555}
-  label{display:block;font-size:12px;margin:8px 0 4px}
-  input[type="text"],input[type="password"]{width:100%;padding:10px;border-radius:8px;border:1px solid #e3e7ef;box-sizing:border-box}
-  .btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;background:#2b6ef6;color:#fff;border:0;cursor:pointer}
-  .note{font-size:12px;color:#666;margin-top:10px}
-  footer{margin-top:10px;font-size:12px;color:#888}
-
-  /* overlay explicativo */
-  .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,15,30,.5);z-index:1000}
-  .panel{width:720px;max-width:95%;background:#fff;padding:20px;border-radius:10px;box-shadow:0 12px 40px rgba(10,20,40,.3)}
-  .panel h2{margin:0 0 8px}
-  .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-  .check{background:#f7f9ff;padding:10px;border-radius:8px;font-size:13px}
-  .danger{color:#b00020;font-weight:600}
-  .close{margin-top:16px;padding:8px 12px;border-radius:8px;border:0;background:#e6e7ea;cursor:pointer}
-  .badge{display:inline-block;padding:6px 8px;border-radius:999px;font-size:12px;margin-left:6px;background:#eef}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Exemplo</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="card" role="main" aria-labelledby="title">
-    <h1 id="title">Acesso - Plataforma Exemplo</h1>
-    <p class="lead">Esta é uma simulação educativa. <strong>Nenhuma senha é coletada.</strong></p>
+<body class="bg-gray-100">
 
-    <form id="loginForm" autocomplete="off" novalidate>
-      <label for="user">Usuário</label>
-      <input id="user" type="text" placeholder="email@exemplo.com" />
-      <label for="pass">Senha</label>
-      <input id="pass" type="password" placeholder="••••••••" />
-      <button class="btn" type="submit">Entrar</button>
-      <div class="note">Dica rápida: passe o cursor sobre o botão "Entrar" para ver se a ação vai pra outro endereço (simular).</div>
-    </form>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Mercado Livre" class="logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar produtos, marcas e muito mais..." class="search-input">
+        </div>
+    </header>
 
-    <footer>
-      <span id="urlInfo">URL atual: <em id="urlText"></em></span>
-      <span class="badge" id="protoBadge"></span>
-    </footer>
-  </div>
+    <!-- Seção de produtos -->
+    <section class="products-section">
+        <h2>Os mais vendidos no Mercado Livre</h2>
+        
+        <!-- Produtos -->
+        <div class="products">
+            <div class="product">
+                <img src="images/tv1.avif" alt="Produto 1" class="product-image">
+                <div class="product-info">
+                    <p class="product-name">Smart TV TCL 50P715 LED 4K 50"</p>
+                    <p class="product-price">R$ 2.499 <span class="discount">10% OFF</span></p>
+                    <p class="product-parcel">12x R$ 208,25 sem juros</p>
+                    <p class="free-shipping">Frete grátis</p>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/tv1.avif" alt="Produto 2" class="product-image">
+                <div class="product-info">
+                    <p class="product-name">Smart TV TCL 50p715 4K UHD 50"</p>
+                    <p class="product-price">R$ 2.499 <span class="discount">13% OFF</span></p>
+                    <p class="product-parcel">12x R$ 208,25 sem juros</p>
+                    <p class="free-shipping">Frete grátis</p>
+                </div>
+            </div>
+            <div class="product">
+                <img src="images/tv1.avif" alt="Produto 3" class="product-image">
+                <div class="product-info">
+                    <p class="product-name">Smart TV TCL LED 32” HD</p>
+                    <p class="product-price">R$ 1.499</p>
+                    <p class="product-parcel">12x R$ 124,92 sem juros</p>
+                    <p class="free-shipping">Frete grátis</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="panel">
-      <h2>Por que este login é falso?</h2>
-      <p>
-        Esta demonstração mostra sinais visuais de phishing e ensino seguro. Abaixo estão pontos que denunciam uma fraude (alguns detectados automaticamente):
-      </p>
-
-      <div class="checks" id="checks">
-        <!-- checks preenchidos por JS -->
-      </div>
-
-      <p style="margin-top:12px;font-size:13px">
-        Ação segura: <strong>nunca</strong> digite suas senhas reais em páginas suspeitas. Em demonstrações, explique sempre que não houve armazenamento.
-      </p>
-
-      <button class="close" id="closeBtn">Fechar</button>
-    </div>
-  </div>
-
-<script>
-  // segurança: NUNCA enviar dados
-  const form = document.getElementById('loginForm');
-  const overlay = document.getElementById('overlay');
-  const checksBox = document.getElementById('checks');
-  const urlText = document.getElementById('urlText');
-  const protoBadge = document.getElementById('protoBadge');
-
-  // mostrar info da URL (apenas leitura, não enviar)
-  urlText.textContent = window.location.href;
-  protoBadge.textContent = window.location.protocol.replace(':','').toUpperCase();
-
-  form.addEventListener('submit', (ev) => {
-    ev.preventDefault(); // bloqueia qualquer envio
-    runChecksAndShow();
-  });
-
-  document.getElementById('closeBtn').addEventListener('click', () => {
-    overlay.style.display = 'none';
-    overlay.setAttribute('aria-hidden','true');
-  });
-
-  function addCheck(title, desc, isBad){
-    const el = document.createElement('div');
-    el.className = 'check';
-    el.innerHTML = '<strong>' + title + '</strong><div style="font-size:12px;color:#444;margin-top:6px">' + desc + '</div>' + (isBad ? '<div class="danger" style="margin-top:6px">Risco: alto</div>' : '');
-    checksBox.appendChild(el);
-  }
-
-  function runChecksAndShow(){
-    checksBox.innerHTML = '';
-
-    // 1) protocolo HTTP vs HTTPS
-    const proto = window.location.protocol;
-    if(proto === 'https:'){
-      addCheck('Protocolo', 'HTTPS detectado — conexão criptografada (note: certificado pode ser inválido).', false);
-    } else {
-      addCheck('Protocolo', 'HTTP detectado — tráfego NÃO criptografado. Pistas: ausência do cadeado/https.', true);
-    }
-
-    // 2) hostname / domínio estranho
-    const host = window.location.hostname;
-    if(/localhost|127\\.0\\.0\\.1/.test(host)){
-      addCheck('Domínio', 'Rodando localmente (localhost) — ideal para demos. Em ataque real, domínios estranhos costumam imitar o legítimo com variações.', false);
-    } else {
-      // heurística simples: comparar com exemplo "senai" ou "google" (só pra demo)
-      if(/senai|google|gmail|microsoft/.test(host.toLowerCase())){
-        addCheck('Domínio', 'Domínio contém nome conhecido — verifique se é o domínio oficial (subdomínios e grafias podem enganar).', false);
-      } else {
-        addCheck('Domínio', 'Domínio não reconhecido/estranho — possível sinal de phishing.', true);
-      }
-    }
-
-    // 3) formulário e action
-    addCheck('Formulário', 'Este formulário não tem atributo "action" enviando dados. Em páginas reais, verifique o destino do POST/GET (action).', false);
-
-    // 4) certificado (simulado)
-    // não conseguimos ler certificado real via JS no browser sem APIs; vamos aconselhar verificação manual
-    addCheck('Certificado', 'Impossível verificar certificado via JS. Instrua usuário a clicar no cadeado do navegador e checar: emissor, validade, e se o nome casa com o site.', false);
-
-    // 5) erros ortográficos e look-and-feel
-    addCheck('Aparência & Texto', 'Procure por erros de ortografia, imagens borradas, logotipos fora de proporção — sinais clássicos de páginas falsas.', true);
-
-    // 6) links e redirecionamentos
-    addCheck('Links', 'Passe o mouse sobre links para ver o destino real (URL). Encurtadores e punycode são comumente usados em golpes.', true);
-
-    overlay.style.display = 'flex';
-    overlay.setAttribute('aria-hidden','false');
-    overlay.querySelector('.panel').focus?.();
-  }
-</script>
 </body>
 </html>
